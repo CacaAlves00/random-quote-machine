@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import fetchRandomQuote from './api';
+import './App.scss';
+import QuoteBox from './components/QuoteBox'
 
 function App() {
+  const [quote, setQuote] = useState(null)
+
+
+  useEffect(() => {
+    fetchNewQuote()
+
+  }, [])
+
+  async function fetchNewQuote() {
+    const apiResponse = await fetchRandomQuote()
+    setQuote(apiResponse)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App d-flex flex-column align-items-center">
+      {
+        quote == null ?
+          <Spinner className="mt-5" animation="border" variant="primary" /> :
+          <>
+            <h1>Random Quote Machine</h1>
+            <QuoteBox onClickNewQuoteBtn={fetchNewQuote} author={quote.author} content={quote.content} />
+          </>
+      }
     </div>
   );
 }

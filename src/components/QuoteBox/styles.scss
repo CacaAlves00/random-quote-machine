@@ -1,0 +1,27 @@
+#quote-box {
+    width: 40vw;
+    // height: 45vh;
+    margin: auto;
+
+    #text {
+        font-size: 1.7rem;
+        font-weight: 500;
+    }
+    
+    #author {
+        color: rgb(31, 31, 31);
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #tweet-quote {
+        // align-self: end;
+        // justify-self: flex-end;
+    }
+}
